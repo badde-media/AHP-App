@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+    <link rel="stylesheet" href="css/survey.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="js/Storage.js"></script>
+  </head>
+    <body>
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+           
+            
+            <span class="right"><a href="Test.html">Start</a></span>
+        </div>
+        
+
+
+       
+        <!-- Start Body --> 
+        <!-- Start Tab-Config -->
+                 
+       <div class="row column text-center">
+            <div class="small-12-testOverview columns">
+ <br> <br  /><h1>ABSTIMMUNG </h1>
+    <br> <br  />
+       
+            <div id="loadData"> </div>
+            <div> </div>
+            <form id="storage">
+            </form>
+            
+           <div id="loadData1"> </div>
+            <div> </div>
+            <form id="storage">
+            </form> 
+            
+ 
+            </div>
+        </div>
+        
+  
+          
+          <div class="row column text-center">
+            <div class="small-12-dropdown columns">
+                <h3>Welches Kriterium ist [PLATZ] zutreffender?</h3></div>
+           
+          </div>
+          
+   
+         
+        
+        <div class="row text-center">
+            <div class="small-12 columns">
+        <ul class="accordion" data-accordion>
+  <li data-accordion-item>
+    <a href="#" class="accordion-title" id="loadData2"> </a>
+    <div class="accordion-content" data-tab-content>
+      Du lebst und handelst nach deinen eigenen Prinzipien und Idealen. Du bist jemand, der sich gerne für andere einsetzt und zu einem guten Zweckbeiträgt.
+    </div>
+  </li>
+  <li data-accordion-item>
+      <a href="#" class="accordion-title" id="loadData3"></a>
+    <div class="accordion-content" data-tab-content>
+      Du möchtest eine Person sein,an der sich andere orientieren.Du möchtest etwas bewirken 
+die Meinung und das Verhalten anderer beeinflussen.
+    </div>
+    <li data-accordion-item>
+        <a href="#" class="accordion-title" id="loadData4"></a>
+    <div class="accordion-content" data-tab-content>
+     Du hast Spaß daran, Dich Herausforderungen zu stellen und diese zu bewältigen.
+     Du fühlst Dich gut wenn du schwierige Aufgaben erfolgriech und eigenständig meistern konntest. 
+     Du genießt es, wenn Du die Kontrolle hast und ohne Hilfe anderer zurechtkommst.
+    </div>
+    <li data-accordion-item>
+    <a href="#" class="accordion-title"  id="loadData5"></a>
+    <div class="accordion-content" data-tab-content>
+      Dir ist es wichtig, DeineNeugier und Deinen Wissens-durst zu stillen. 
+      Du willstFreude und Vergnügenerleben, Neues kennen lernen und Vieles ausprobieren.
+    </div>
+        </ul></div></div>
+        
+        
+        
+          
+           <div class="container-solutions">
+                <div class="row text-center">
+                    
+                    <div class="header_solution"><h3>Lösungen</h3></div>
+       <div class="solution_output" id="loadData6"> </div>
+       <div class="solution_output" id="loadData7"> </div> 
+       <div class="solution_output" id="loadData8"> </div>
+       <a href="Decision_Edit.html"><div class="edit-input"><img src="assets/img/edit-small.png" alt="edit-small"></div></a>
+           </div></div>
+        
+     
+           
+       
+           
+                 
+        <script> 
+  
+
+if (typeof(Storage) !== "undefined") {
+    var nname= localStorage.getItem("nname");
+    var nbeschreibung= localStorage.getItem("nbeschreibung");
+    var nkriterium1= localStorage.getItem("nkriterium1");
+    var nkriterium2= localStorage.getItem("nkriterium2");
+    var nkriterium3= localStorage.getItem("nkriterium3");
+    var nkriterium4= localStorage.getItem("nkriterium4");
+    var nloesung1= localStorage.getItem("nloesung1");
+    var nloesung2= localStorage.getItem("nloesung2");
+    var nloesung3= localStorage.getItem("nloesung3");
+    if (nname === null) { nname ="[Platzhalter - TITLE]"; }
+    if (nkriterium1 ===null) {nkriterium1="[Platzhalter - Kriterium1]";}
+    if (nkriterium2 ===null) {nkriterium2="[Platzhalter - Kriterium2]";}
+    if (nkriterium3 ===null) {nkriterium3="[Platzhalter - Kriterium3]";}
+    if (nkriterium4 ===null) {nkriterium4="[Platzhalter - Kriterium4]";}
+    if (nloesung1 ===null) {nloesung1="[Platzhalter - Loesung1]";}
+    if (nloesung2 ===null) {nloesung2="[Platzhalter - Loesung2]";}
+    if (nloesung3 ===null) {nloesung3="[Platzhalter - Loesung3]";}
+    $("#loadData").html ("<h2>" + nname + "</h2>");
+    $("#loadData1").html ("<h4>" + nbeschreibung + "</h4>");
+    $("#loadData2").html(nkriterium1);
+    $("#loadData3").html(nkriterium2);
+    $("#loadData4").html(nkriterium3);
+    $("#loadData5").html(nkriterium4);
+    $("#loadData6").html(nloesung1);
+    $("#loadData7").html(nloesung2);
+    $("#loadData8").html(nloesung3);
+ /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
+        'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
+        'color' : '#fff' , 'line-height' : '1.2' 
+}); */
+}
+
+else {
+    document.getElementById("loadData").innerHTML ="Ihr Webbrowser unterstützt kein Web Storage!";
+}
+
+
+
+
+
+
+</script>
+         
+       
+        
+        <!-- End Body -->
+        <!-- End Tab-Config -->
+        
+      
+        
+        <!-- Footer -->
+      <div class="footer">
+          
+                 <div class="row">
+            <div class="small-2 columns">
+              <label></label>
+               </div>
+                     <div class="footerfloat"> powered by   </div>
+                         <div class="footerfloat"> <a href="https://points.de"><div class="img-points"><img src= assets/img/points_logo.png></div></a></div>
+                   
+            
+              </div>
+               </div>
+            
+        
+
+          
+<!--                <a href="https://points.de><img src="Bilder/Tag_Rahmen.png" onClick="src='Bilder/Tag_Rahmen_Aktiv.png'" onDblClick="src='Bilder/Tag_Rahmen.png'"></a>
+				<a href="https://mars.iuk.hdm-stuttgart.de/~dk077/Projekt/Kalenderansicht.html"><div id="iconbox3"><img src="Bilder/Monat_Rahmen.png" onClick="src='Bilder/Monat_Rahmen_Aktiv.png'" onDblClick="src='Bilder/Monat_Rahmen.png'"></div></a>
+				<a href=""><div id="iconbox4"><img src="Bilder/Hinzufuegen_Rahmen.png" onClick="src='Bilder/Hinzufuegen_Rahmen_Aktiv.png'" onDblClick="src='Bilder/Hinzufuegen_Rahmen.png'"></div></a>-->
+			
+           
+   <!-- End Footer -->
+
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Storage.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

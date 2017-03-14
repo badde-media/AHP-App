@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/survey.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/image-picker.css">
+    <script type="text/javascript" src="js/image-picker.js"></script>
+    <script type="text/javascript" src="js/image-picker.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
+    
+  </head>
+    <body>
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+           <div class="center title">Bewertung</div>
+            <span class="left"><a href="Test_Overview.html">Zurück</a></span>
+            <span class="right"><a href="#">Weiter</a></span>
+        </div>
+
+        <!-- End Title Bar -->
+        <!-- Start Head --> 
+ 
+         <!-- End Head --> 
+        <!-- Start Body --> 
+      
+        
+        
+            <div class="small-12-emptyContainer columns">
+            </div>
+                 
+       <div class="row column text-center">
+            <div class="small-12 columns">
+                
+  <div id="loadData"> </div>
+            <div> </div>
+            <form id="storage">
+            </form>
+            
+            
+    <br> <br  /><h4>[Platzhalter - DropDown Auswahl] Was ist zutreffender? </h4>
+  
+            </div>
+        </div>
+        
+        
+     
+        <div class="wrap2">
+  <div class="row column text-center">
+
+      <div class="skala-criteria1" id="loadData6"></div>  
+      <div class="skala-criteria-free">oder</div>
+      <div class="skala-criteria2" id="loadData7"></div> 
+      
+     <br> <br  />
+     <div class="skala">
+<div class="skala-floating-box-max"></div>
+<div class="skala-floating-box-medium"></div>
+<div class="skala-floating-box-small"></div>
+<div class="skala-floating-box-medium"></div>
+<div class="skala-floating-box-max"></div>     
+</div> 
+     
+     
+     <div class="skala-description">
+         <div class="skala-floating-descrip-max">Total zutreffend</div>
+         <div class="skala-floating-descrip-medium"></div>
+         <div class="skala-floating-descrip-small">Gleichbedeutend</div>
+         <div class="skala-floating-descrip-medium"></div>
+         <div class="skala-floating-descrip-max">Total zutreffend</div>
+         
+     </div>
+  
+  </div> </div> 
+        
+        
+            
+        <div class="row column text-center">
+            <div class="small-12-criteria columns">
+                <h3><a href="Test_Overview.html"> KRITERIEN</a></h3></div>
+
+                <!--
+    <div class="row column text-center">
+    <div class="small-12-bottom columns">
+    <select id="selectImage" class="image-picker">
+    <option value=""></option>
+    <option data-img-src='assets/img/Balken_L.png' value='Dominant_Links'>Dominiert</option>
+    <option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Links'>Etwas</option>
+    <option data-img-src='assets/img/Balken_S.png' value='Neutral'>Neutral</option>
+    <option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Rechts'>Etwas</option>
+    <option data-img-src='assets/img/Balken_L.png' value='Dominant_Rechts'>Dominiert</option>   
+    </select>    
+            </div> </div> --!>
+
+    
+           
+          </div>
+          
+
+        <!-- End Body -->
+  
+        
+         <script> 
+  
+
+if (typeof(Storage) !== "undefined") {
+    var nname= localStorage.getItem("nname");
+    var nbeschreibung= localStorage.getItem("nbeschreibung");
+    var nkriterium1= localStorage.getItem("nkriterium1");
+    var nkriterium2= localStorage.getItem("nkriterium2");
+    var nkriterium3= localStorage.getItem("nkriterium3");
+    var nkriterium4= localStorage.getItem("nkriterium4");
+    if (nname === null) { nname ="[Platzhalter - TITLE]"; }
+    if (nkriterium1 ===null) {nkriterium1="[Platzhalter - Kriterium1]";}
+    if (nkriterium2 ===null) {nkriterium2="[Platzhalter - Kriterium2]";}
+    if (nkriterium3 ===null) {nkriterium3="[Platzhalter - Kriterium2]";}
+    if (nkriterium4 ===null) {nkriterium4="[Platzhalter - Kriterium2]";}
+    document.getElementById("loadData").innerHTML += "<h2>" + nname + "</h2>";
+    document.getElementById("loadData6").innerHTML += "<h3>" +  nkriterium1 +"</h3>";
+    document.getElementById("loadData7").innerHTML += "<h3>"+ nkriterium2 +"</h3>";
+}
+
+
+</script>    
+        
+
+
+          
+           
+   <!-- End Footer -->
+     
+       <script type="text/javascript">     
+            $("select").imagepicker();
+         </script>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Storage.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

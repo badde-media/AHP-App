@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+  </head>
+    <body>
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+            <div class="center title">Neue Entscheidung</div>
+            <span class="left"><a href="Decision_Create.html">Zurück</a></span>
+            <span class="right"><a href="Decision_Invite.html">Weiter</a></span>
+        </div>
+
+        <!-- End Title Bar -->
+
+        <div class="callout large primary">
+            <div class="row column text-center">
+                <h1>Konfigurator </h1>
+            </div>
+        </div>
+
+        <!-- Start Body --> 
+        <!-- Start Tab-Config -->
+       
+   <div class="large-12 columns">
+            
+           
+        <ul class="tabs" data-tabs id="configure-tabs">
+            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true" id="tab-control" >Allgemein</a></li>
+            <li class="tabs-title"><a href="#panel2">Zeit</a></li>
+            <li class="tabs-title"><a href="#panel3">Reihenfolge</a></li>
+        </ul>
+
+        
+            <div class="tabs-content"  data-tabs-content="configure-tabs">
+                <div class="tabs-panel is-active" id="panel1">
+
+                    <div>
+                        <h7> Sichtbarkeit</h7>
+                        <p><input id="checkbox1" type="checkbox"><label for="checkbox1">Geheime Umfrage</label> </p>
+                    </div>
+                    <div>
+                        <h7>Teilnehmer dürfen</h7>
+                        <br> <input id="checkbox2" type="checkbox"><label for="checkbox2">Persönliche Einzelauswertung</label><br /> 
+                         <input id="checkbox3" type="checkbox"><label for="checkbox3">bisherige Gruppenauswertung</label> 
+                        <p><strong>nach der Umfrage ansehen </strong></p>
+                    </div>
+                    <div>
+                        <h7>Benachrichtigung</h7>
+                        <br><input id="checkbox4" type="checkbox"><label for="checkbox4">Automatische E-Mail Benachrichtigung nach JEDER neuen Teilnahme einstellen</label><br /> 
+                        <input id="checkbox5" type="checkbox"><label for="checkbox5">Automatische E-Mail Benachrichtigung nach allen Teilnahmen</label> 
+                    </div>
+                </div>
+            
+            <div class="tabs-panel" id="panel2">
+                <h7>Zeit</h7>
+                <p>Wie viele Sekunden kriegen die Probanden von ihnen Zeit, sich pro Frage zu entscheiden?</p>
+                <input type="radio" name="timelapse" value="rbtn1" id="dontmind"><label for="checkbox2">egal</label>
+              <br> <input type="radio" name="timelapse" value="rbtn1" id="dontmind"><label for="checkbox2"><input type="text" placeholder="10 Sekunden" /></label> <br  /> 
+            </div>
+            <div class="tabs-panel" id="panel3">
+                <h7>Reihenfolge</h7>
+                <p>In welcher Reihenfolge sollen die Fragen gestellt werden?</p>
+              <input type="radio" name="query" value="rbtn1" id="straight_query"><label for="straight_query">wie eingegeben</label>
+             <br>  <input type="radio" name="query" value="rbtn2" id="messy_query"><label for="messy_query">total durcheinander</label> <br  />  
+            </div>
+    </div>
+   </div>
+        <!-- End Body -->
+        <!-- End Tab-Config -->
+        
+  
+   
+
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

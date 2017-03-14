@@ -1,0 +1,146 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+  </head>
+    <body>
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+           
+            
+            <span class="right"><a href="Test_Overview.html">Los Geht's!</a></span>
+        </div>
+        
+        <br> <br  /><br> <br  /><br> <br  /><br> <br  />
+
+        <!-- End Title Bar -->
+
+<!--        <div class="callout large primary">
+            <div class="row column text-center">
+                <h1>Invite</h1>
+            </div>
+        </div>
+        
+        <br> <br  /><br> <br  />-->
+
+        <!-- Start Body --> 
+        <!-- Start Tab-Config -->
+                 
+       <div class="row column text-center">
+            <div class="small-12 columns">
+ <br> <br  /><h1>ABSTIMMUNG </h1>
+    <br> <br  /> <div id="loadData"> </div>
+            <div> </div>
+  
+            </div>
+        </div>
+        
+        <br> <br  />
+        
+          
+          <div class="row column text-center">
+            <div class="small-12 columns">
+                <h3>Sie wurden von [Platzhalter - Name] eingeladen, an seiner Umfrage teilzunehmen </h3></div>
+           
+          </div>
+          
+        <br> <br  /> <br> <br  />
+        
+          <div class="row column text-center">
+            <div class="small-12 columns">
+                <h3>Es handelt sich um eine</h3> 
+                <div><h3> [Platzhalter - Sichtbarkeit]*  </h3> </div> </div>
+              
+        </div> 
+        
+         <br> <br  /> <br> <br  />
+        
+         <div class="row">
+            <div class="small-2-static columns">
+              <label></label>
+               </div>
+             <div class="small-5-static columns">
+                 <div><h4>Name eingeben</h4></div>
+               </div>
+               <div class="large-5 columns">
+              </div>
+              </div>
+        
+  
+        
+           <div class="row">
+            <div class="small-2-static columns">
+              <label></label>
+               </div>
+             <div class="small-5-static columns">
+              <input type="text" placeholder="vollständiger Name" />
+            </div>
+              <div class="large-5 columns">
+              </div>
+          </div>
+        
+         
+         <div class="row">
+            <div class="small-2-static columns">
+              <label></label>
+               </div>
+             <div class="small-11 columns"> *Ergebnisse sind danach für den Ersteller sichtbar und dem Namen zuortbar </div> 
+        </div>
+   
+        <!-- End Body -->
+        <!-- End Tab-Config -->
+        
+      
+        
+        <!-- Footer -->
+      <div class="footer">
+          
+                 <div class="row">
+            <div class="small-2 columns">
+              <label></label>
+               </div>
+                     <div class="footerfloat"> powered by   </div>
+                         <div class="footerfloat"> <a href="https://points.de"><div class="img-points"><img src= assets/img/points_logo.png></div></a></div>
+                   
+            
+              </div>
+               </div>
+            
+        
+  <script> 
+  
+
+if (typeof(Storage) !== "undefined") {
+    var nname= localStorage.getItem("nname");
+    var nbeschreibung= localStorage.getItem("nbeschreibung");
+    if (nname === null) { nname ="[Platzhalter - TITLE]"; }
+    document.getElementById("loadData").innerHTML += "<h2>" + nname + "</h2>";
+    document.getElementById("loadData1").innerHTML += "<h4>" + nbeschreibung + "</h4>";
+
+}
+
+else {
+    document.getElementById("loadData").innerHTML ="Ihr Webbrowser unterstützt kein Web Storage!";
+}
+
+</script>
+          
+
+           
+   <!-- End Footer -->
+
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

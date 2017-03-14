@@ -1,0 +1,129 @@
+<!doctype html>
+<!doctype html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+    <link rel="stylesheet" href="css/survey.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="js/Storage.js"></script>
+  </head>
+  <body>
+    
+    <!-- Start Title Bar -->
+    <div class="primary title-bar">
+<div class="center title">Neue Entscheidung</div>
+<span class="left"><a href="Single_TestOverview.html">Zurück</a></span>
+<span class="right"><a href="Single_TestOverview.html" id="save">Weiter</a></span>
+</div>
+    
+    
+       
+    <!-- End Title Bar -->
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>AHP </h1>
+        <h2 class="subheader">Perfect Decision Making</h2>
+      </div>
+    </div>
+    
+    <!-- Start Body -->
+    
+
+ 
+
+        <form>
+                                
+             <div class="row">
+            <div class="large-12 columns">
+                <div class="unfold_wrapper">
+                   <label>ENTSCHEIDUNGSZIEL</label>
+<input type="text" class="dec-aim" placeholder="Entscheidungsziel" id="sname">             
+</div>
+                </div>
+             </div>
+        </form>   
+    
+      
+    
+              <form method="POST">
+             <div class="row">
+            <div class="large-12 columns">
+               
+              <label class="dec-heading">KRITERIEN</label>
+               <div id="dynamicInput">
+           <input type="text" placeholder="Kriterium eintragen" id="skriterium1" value="" name="myInputs[]"/>
+              <input type="text" placeholder="Kriterium eintragen" id="skriterium2" value="" />            
+     </div>
+              
+              <div onClick="addInput('dynamicInput');"><h2>+</h2></div>
+            </div>
+          </div>
+
+    
+            
+</form>
+      
+           
+            
+
+        <form>
+
+            
+          
+         <div class="row">
+            <div class="large-12 columns">
+              <label>LÖSUNGEN</label>
+              
+              <div class="solutions">
+              <input type="text" placeholder="Lösung eintragen" id="sloesung1" value="">
+              <input type="text" placeholder="Lösung eintragen" id="sloesung2" value="" >
+              <input type="text" placeholder="Lösung eintragen" id="sloesung3" value="" >
+             </div>
+            </div>
+          </div>
+            
+        </form>
+    
+      
+    
+  <script>  
+ $('#save').on('click', function(){
+
+    $('input[type="text"]').each(function(){    
+        var id = $(this).attr('id');
+        var value = $(this).val();
+       localStorage.setItem(id, value);
+        
+    });   
+});
+
+
+    $('input[type="text"]').each(function(){    
+        var id = $(this).attr('id');
+        var value = localStorage.getItem(id);
+        
+        $(this).val(value);
+        
+    }); 
+                     
+     </script>                 
+                      
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/addInputgr.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    
+    
+    
+  </body>
+</html>
