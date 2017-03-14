@@ -38,8 +38,7 @@
             
            <div id="loadData1"> </div>
             <div> </div>
-            <form id="storage">
-            </form> 
+
             
  
             </div>
@@ -49,9 +48,7 @@
           
           <div class="row column text-center">
             <div class="small-12-dropdown columns">
-                <h3>Welches Kriterium ist [PLATZ] zutreffender?</h3></div>
-           
-          </div>
+                <div id="loadData9"> </div></div></div>
           
    
          
@@ -117,6 +114,7 @@ if (typeof(Storage) !== "undefined") {
     var nloesung1= localStorage.getItem("nloesung1");
     var nloesung2= localStorage.getItem("nloesung2");
     var nloesung3= localStorage.getItem("nloesung3");
+    var select_crit= localStorage.getItem ("select_crit");
     if (nname === null) { nname ="[Platzhalter - TITLE]"; }
     if (nkriterium1 ===null) {nkriterium1="[Platzhalter - Kriterium1]";}
     if (nkriterium2 ===null) {nkriterium2="[Platzhalter - Kriterium2]";}
@@ -134,6 +132,7 @@ if (typeof(Storage) !== "undefined") {
     $("#loadData6").html(nloesung1);
     $("#loadData7").html(nloesung2);
     $("#loadData8").html(nloesung3);
+    $("#loadData9").html("<h3>" + "Welches Kriterium ist " + select_crit + "</h3>");
  /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
         'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
         'color' : '#fff' , 'line-height' : '1.2' 
