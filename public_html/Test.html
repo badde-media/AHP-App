@@ -45,8 +45,8 @@
             <form id="storage">
             </form>
             
-            
-    <br> <br  /><h4>[Platzhalter - DropDown Auswahl] Was ist zutreffender? </h4>
+       
+                <div id="loadData9"> </div>
   
             </div>
         </div>
@@ -56,9 +56,9 @@
         <div class="wrap2">
   <div class="row column text-center">
 
-      <div class="skala-criteria1" id="loadData6"></div>  
+      <div class="skala-criteria1" id="loadData2"></div>  
       <div class="skala-criteria-free">oder</div>
-      <div class="skala-criteria2" id="loadData7"></div> 
+      <div class="skala-criteria2" id="loadData3"></div> 
       
      <br> <br  />
      <div class="skala">
@@ -108,7 +108,7 @@
         <!-- End Body -->
   
         
-         <script> 
+        <script> 
   
 
 if (typeof(Storage) !== "undefined") {
@@ -118,18 +118,44 @@ if (typeof(Storage) !== "undefined") {
     var nkriterium2= localStorage.getItem("nkriterium2");
     var nkriterium3= localStorage.getItem("nkriterium3");
     var nkriterium4= localStorage.getItem("nkriterium4");
+    var nloesung1= localStorage.getItem("nloesung1");
+    var nloesung2= localStorage.getItem("nloesung2");
+    var nloesung3= localStorage.getItem("nloesung3");
+    var select_crit= localStorage.getItem ("select_crit");
     if (nname === null) { nname ="[Platzhalter - TITLE]"; }
     if (nkriterium1 ===null) {nkriterium1="[Platzhalter - Kriterium1]";}
     if (nkriterium2 ===null) {nkriterium2="[Platzhalter - Kriterium2]";}
-    if (nkriterium3 ===null) {nkriterium3="[Platzhalter - Kriterium2]";}
-    if (nkriterium4 ===null) {nkriterium4="[Platzhalter - Kriterium2]";}
-    document.getElementById("loadData").innerHTML += "<h2>" + nname + "</h2>";
-    document.getElementById("loadData6").innerHTML += "<h3>" +  nkriterium1 +"</h3>";
-    document.getElementById("loadData7").innerHTML += "<h3>"+ nkriterium2 +"</h3>";
+    if (nkriterium3 ===null) {nkriterium3="[Platzhalter - Kriterium3]";}
+    if (nkriterium4 ===null) {nkriterium4="[Platzhalter - Kriterium4]";}
+    if (nloesung1 ===null) {nloesung1="[Platzhalter - Loesung1]";}
+    if (nloesung2 ===null) {nloesung2="[Platzhalter - Loesung2]";}
+    if (nloesung3 ===null) {nloesung3="[Platzhalter - Loesung3]";}
+    $("#loadData").html ("<h2>" + nname + "</h2>");
+    $("#loadData1").html ("<h4>" + nbeschreibung + "</h4>");
+    $("#loadData2").html("<h3>" + nkriterium1 + "</h3>");
+    $("#loadData3").html("<h3>" + nkriterium2 + "</h3>");
+    $("#loadData4").html("<h3>" + nkriterium3 + "</h3>");
+    $("#loadData5").html("<h3>" + nkriterium4 + "</h3>");
+    $("#loadData6").html("<h3>" + nloesung1 + "</h3>");
+    $("#loadData7").html("<h3>" + nloesung2 + "</h3>");
+    $("#loadData8").html("<h3>" + nloesung3 + "</h3>");
+    $("#loadData9").html("<h3>" + "Welches Kriterium ist " + select_crit + "</h3>");
+ /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
+        'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
+        'color' : '#fff' , 'line-height' : '1.2' 
+}); */
+}
+
+else {
+    document.getElementById("loadData").innerHTML ="Ihr Webbrowser unterstützt kein Web Storage!";
 }
 
 
-</script>    
+
+
+
+
+</script>
         
 
 

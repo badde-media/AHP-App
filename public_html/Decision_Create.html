@@ -44,8 +44,8 @@
                    <label>ENTSCHEIDUNGSZIEL</label>
 <input type="text" class="dec-aim" placeholder="Entscheidungsziel" id="nname">
 
- 
-<textarea  placeholder="Entscheidungsbeschreibung" id="descrip1"></textarea>
+ <input type="text" placeholder="Entscheidungsbeschreibung" id="nbeschreibung">
+
 </div>
               
 </div>
@@ -92,7 +92,7 @@
               <label>Was ist ...</label>
                </div>
              <div class="small-4-static columns">
-              <select>
+              <select id="select_crit" class="multiple_crit_options">
                 <option value="wichtiger">wichtiger</option>
                 <option value="besser">besser</option>
                 <option value="stärker">stärker</option>
@@ -121,17 +121,23 @@
             
         </form>
     
-      
+
     
   <script>  
  $('#save').on('click', function(){
+    
+     
 
     $('input[type="text"]').each(function(){    
+        
         var id = $(this).attr('id');
         var value = $(this).val();
        localStorage.setItem(id, value);
-        
+  
     });   
+    
+     
+      
 });
 
 
@@ -142,6 +148,13 @@
         $(this).val(value);
         
     }); 
+    
+    
+    $('.multiple_crit_options').change(function() {
+    localStorage.setItem(this.id, this.value);
+}).val(function() {
+    return localStorage.getItem(this.id)
+});
                      
      </script>                 
                       

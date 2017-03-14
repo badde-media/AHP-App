@@ -1,9 +1,9 @@
     
-var counter = 3;
-var limit = 5;
+var counter = 2;
+var limit = 4;
 function addInput(divName){
      if (counter === limit)  {
-          alert("Max " + counter + " Kriterien - Zur Pro Version");
+          alert("Max 4 Kriterien in der Light Version - Zu Pro Upgraden");
      }
      else {
           var newdiv = document.createElement('div');
