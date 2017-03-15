@@ -687,9 +687,8 @@ padding-bottom: 2rem;
 }
 
 .small-12-dropdown {
-
-padding: 3rem;
-
+  width: 100%;
+padding: 4rem;
 
 }
 

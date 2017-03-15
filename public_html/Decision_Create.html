@@ -17,11 +17,11 @@
     <div class="primary title-bar">
 <div class="center title">Neue Entscheidung</div>
 <span class="left"><a href="Master.html">Zurück</a></span>
-<span class="right"><a href="Decision_Config.html" id="save">Weiter</a></span>
+<span class="right"><a href="Decision_Config.html" onClick ="saveValue();">Weiter</a></span>
 </div>
     
     
-       
+    
     <!-- End Title Bar -->
 
     <div class="callout large primary">
@@ -32,20 +32,16 @@
     </div>
     
     <!-- Start Body -->
-    
-
  
-
         <form>
                                 
              <div class="row">
             <div class="large-12 columns">
                 <div class="unfold_wrapper">
                    <label>ENTSCHEIDUNGSZIEL</label>
-<input type="text" class="dec-aim" placeholder="Entscheidungsziel" id="nname">
-
- <input type="text" placeholder="Entscheidungsbeschreibung" id="nbeschreibung">
-
+<input type="text" class="dec-aim" placeholder="Entscheidungsziel" id="val1" value="">
+ 
+<textarea  placeholder="Entscheidungsbeschreibung" id="descrip1"></textarea>
 </div>
               
 </div>
@@ -62,8 +58,10 @@
   }
   });
 });</script>
-      
-      
+
+            
+         
+  
     
               <form method="POST">
              <div class="row">
@@ -71,19 +69,22 @@
                
               <label class="dec-heading">KRITERIEN</label>
                <div id="dynamicInput">
-           <input type="text" placeholder="Kriterium eintragen" id="nkriterium1" value="" name="myInputs[]"/>
-              <input type="text" placeholder="Kriterium eintragen" id="nkriterium2" value="" />            
+           <input type="text" placeholder="Kriterium eintragen" id="crit1" value="" name="myInputs[]"/>
+              <input type="text" placeholder="Kriterium eintragen" id="crit2" value="" />            
      </div>
               
-              <div onClick="addInputgr('dynamicInput');"><h2>+</h2></div>
+              <div onClick="addInput('dynamicInput');"><h2>+</h2></div>
             </div>
           </div>
 
     
+
+     
+ <!--     <h2><a href="#" id="addScnt">+</a></h2> -->
             
 </form>
-      
-           
+    
+            
             
 
         <form>
@@ -92,7 +93,7 @@
               <label>Was ist ...</label>
                </div>
              <div class="small-4-static columns">
-              <select id="select_crit" class="multiple_crit_options">
+              <select>
                 <option value="wichtiger">wichtiger</option>
                 <option value="besser">besser</option>
                 <option value="stärker">stärker</option>
@@ -112,62 +113,57 @@
               <label>LÖSUNGEN</label>
               
               <div class="solutions">
-              <input type="text" placeholder="Lösung eintragen" id="nloesung1" value="">
-              <input type="text" placeholder="Lösung eintragen" id="nloesung2" value="" >
-              <input type="text" placeholder="Lösung eintragen" id="nloesung3" value="" >
+              <input type="text" placeholder="Lösung eintragen" id="sol1" value="">
+              <input type="text" placeholder="Lösung eintragen" id="sol2" value="" >
+              <input type="text" placeholder="Lösung eintragen" id="sol3" value="" >
              </div>
             </div>
           </div>
             
         </form>
-    
 
-    
-  <script>  
- $('#save').on('click', function(){
-    
-     
-
-    $('input[type="text"]').each(function(){    
+                        
+                  <script>
+function saveValue(){
+    if (typeof(Storage) !== "undefined") {
+        // alert(1);
+        window.localStorage.setItem("nname",document.getElementById("val1").value);
+        window.localStorage.setItem('nbeschreibung',document.getElementById('descrip1').value);  
+        window.localStorage.setItem('nkriterium1',document.getElementById('crit1').value);
+        window.localStorage.setItem('nkriterium2',document.getElementById('crit2').value);
+            
+            window.localStorage.setItem("nkriterium3",$("#crit3").val());
+            window.localStorage.setItem("nkriterium4",$("#crit4").val());
+            window.localStorage.setItem("nloesung1", document.getElementById("sol1").value);
+            
+            //alert("2");
+            window.localStorage.setItem('nloesung2',document.getElementById('sol2').value);
+            window.localStorage.setItem('nloesung3',document.getElementById('sol3').value);
         
-        var id = $(this).attr('id');
-        var value = $(this).val();
-       localStorage.setItem(id, value);
-  
-    });   
-    
-     
-      
-});
-
-
-    $('input[type="text"]').each(function(){    
-        var id = $(this).attr('id');
-        var value = localStorage.getItem(id);
+    }
+    else {
+        alert("Ihr Webbrowser unterstützt kein Web Storage!");
+    }
         
-        $(this).val(value);
-        
-    }); 
-    
-    
-    $('.multiple_crit_options').change(function() {
-    localStorage.setItem(this.id, this.value);
-}).val(function() {
-    return localStorage.getItem(this.id)
-});
-                     
-     </script>                 
+}
+
+                      </script>
+   
+                      
                       
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/addInputgr.js"></script>
+    <script src="js/addInput.js"></script>
     <script>
       $(document).foundation();
     </script>
     
     
-    
   </body>
 </html>
+
+
+    
+
