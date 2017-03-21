@@ -1,5 +1,5 @@
     
-var counter = 2;
+var counter = 3;
 var limit = 4;
 function addInput(divName){
      if (counter === limit)  {
