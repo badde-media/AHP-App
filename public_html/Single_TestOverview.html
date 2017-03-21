@@ -45,12 +45,12 @@
      
                   <div class="container-criteria">
                 <div class="row text-center">
-                    
+                    <!-- TODO: Dynamisieren -->
                     <div class="header_criteria"><h3>Kriterien</h3></div>
        <div class="solution_output" id="sloadData2"> </div>
        <div class="solution_output" id="sloadData3"> </div>
        <div class="solution_output" id="sloadData4"> </div> 
-       <div class="solution_output" id="sloadData5"> </div>
+<!--       <div class="solution_output" id="sloadData5"> </div>-->
            </div></div> 
         
         
@@ -79,7 +79,7 @@ if (typeof(Storage) !== "undefined") {
     var skriterium1= localStorage.getItem("skriterium1");
     var skriterium2= localStorage.getItem("skriterium2");
     var skriterium3= localStorage.getItem("skriterium3");
-    var skriterium4= localStorage.getItem("skriterium4");
+//    var skriterium4= localStorage.getItem("skriterium4");
     var sloesung1= localStorage.getItem("sloesung1");
     var sloesung2= localStorage.getItem("sloesung2");
     var sloesung3= localStorage.getItem("sloesung3");
@@ -87,7 +87,7 @@ if (typeof(Storage) !== "undefined") {
     if (skriterium1 ===null) {skriterium1="[Platzhalter - Kriterium1]";}
     if (skriterium2 ===null) {skriterium2="[Platzhalter - Kriterium2]";}
     if (skriterium3 ===null) {skriterium3="[Platzhalter - Kriterium3]";}
-    if (skriterium4 ===null) {skriterium4="[Platzhalter - Kriterium4]";}
+//    if (skriterium4 ===null) {skriterium4="[Platzhalter - Kriterium4]";}
     if (sloesung1 ===null) {sloesung1="[Platzhalter - Loesung1]";}
     if (sloesung2 ===null) {sloesung2="[Platzhalter - Loesung2]";}
     if (sloesung3 ===null) {sloesung3="[Platzhalter - Loesung3]";}
@@ -96,7 +96,7 @@ if (typeof(Storage) !== "undefined") {
     $("#sloadData2").html(skriterium1);
     $("#sloadData3").html(skriterium2);
     $("#sloadData4").html(skriterium3);
-    $("#sloadData5").html(skriterium4);
+//    $("#sloadData5").html(skriterium4);
     $("#sloadData6").html(sloesung1);
     $("#sloadData7").html(sloesung2);
     $("#sloadData8").html(sloesung3);
