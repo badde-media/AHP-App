@@ -12,7 +12,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="js/Storage.js"></script>
   </head>
-  <body onload="init();">
+  <body onLoad="init();">
     
     <!-- Start Title Bar -->
     <div class="primary title-bar">
@@ -107,7 +107,17 @@
         var id = $(this).attr('id');
         var value = localStorage.getItem(id);
         $(this).val(value);
-    }); 
+    });
+    
+    function init() {
+        var matrix = 
+        [
+            [ 1, 0, 0 ],
+            [ 0, 1, 0 ],
+            [ 0, 0, 1 ]
+        ];
+        localStorage["matrix"] = JSON.stringify(matrix);
+    }
 </script>                 
                       
     <script src="js/vendor/jquery.js"></script>
@@ -118,7 +128,6 @@
     <script>
       $(document).foundation();
     </script>
-    
     
     
   </body>
