@@ -15,7 +15,7 @@
            
            <div class="center title">Ergebnis Kriterien</div>
             <span class="left"><a href="Single_Test3.html">Zurück</a></span>
-            <span class="right"><a href="Dashboard.html">Schließen</a></span>
+            <span class="right"><a href="Single_Testlk1.html">Weiter</a></span>
         </div>
 
         <div><svg width="180" height="180">
@@ -39,10 +39,10 @@
     
     function berechne() {
         
-        matrix = JSON.parse(localStorage["matrix"]);  
-	var matrixResult = multiply( matrix, matrix );
+        kMatrix = JSON.parse(localStorage["kMatrix"]);  
+	var kMatrixResult = multiply( kMatrix, kMatrix );
         
-        localStorage["matrixResult"] = JSON.stringify(matrixResult);
+        localStorage["kMatrixResult"] = JSON.stringify(kMatrixResult);
     }
   
 function multiply( mA, mB ) {

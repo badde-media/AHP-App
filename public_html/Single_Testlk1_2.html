@@ -21,9 +21,9 @@
 
         <!-- Start Title Bar -->
         <div class="primary title-bar">
-           <div class="center title">Bewertung Kriterien</div>
-            <span class="left"><a href="Single_Test2.html">Zurück</a></span>
-            <span class="right"><a href="Result_K.html">Weiter</a></span>
+            <div class="center title">Bewertung Lösungen</div>
+            <span class="left"><a href="Single_Testlk1_1.html">Zurück</a></span>
+            <span class="right"><a href="Single_Testlk1_3.html">Weiter</a></span>
         </div>
 
         <!-- End Title Bar -->
@@ -41,6 +41,7 @@
             <div class="small-12 columns">
                 
   <div id="sloadData"> </div>
+  <div id="sloadData1"> </div>
     
          
             
@@ -56,7 +57,7 @@
 
       <div class="skala-criteria1" id="sloadData2"></div>  
       <div class="skala-criteria-free"><h5>oder</h5></div>
-      <div class="skala-criteria2" id="sloadData4"></div> 
+      <div class="skala-criteria2" id="sloadData3"></div> 
       
      <br> <br  />
      <div class="skala">
@@ -130,14 +131,15 @@ if (typeof(Storage) !== "undefined") {
     if (sloesung2 ===null) {sloesung2="[Platzhalter - Loesung2]";}
     if (sloesung3 ===null) {sloesung3="[Platzhalter - Loesung3]";}
     $("#sloadData").html ("<h2>" + sname + "</h2>");
+    $("#sloadData1").html ("<h2>" + skriterium1 + "</h2>");
  
-    $("#sloadData2").html("<h3>" + skriterium2 + "</h3>");
-    $("#sloadData3").html("<h3>" + skriterium3 + "</h3>");
-    $("#sloadData4").html("<h3>" + skriterium3 + "</h3>");
-//    $("#sloadData5").html("<h3>" + skriterium4 + "</h3>");
-    $("#sloadData6").html(sloesung1);
-    $("#sloadData7").html(sloesung2);
-    $("#sloadData8").html(sloesung3);
+    $("#sloadData2").html("<h3>" + sloesung1 + "</h3>");
+    $("#sloadData3").html("<h3>" + sloesung3 + "</h3>");
+//    $("#sloadData4").html("<h3>" + skriterium3 + "</h3>");
+////    $("#sloadData5").html("<h3>" + skriterium4 + "</h3>");
+//    $("#sloadData6").html(sloesung1);
+//    $("#sloadData7").html(sloesung2);
+//    $("#sloadData8").html(sloesung3);
     
  /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
         'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
@@ -146,14 +148,14 @@ if (typeof(Storage) !== "undefined") {
         
     
     function aktiv(wert) {
-        kMatrix = JSON.parse(localStorage["kMatrix"]);        
-        kMatrix[1][2] = wert;
+        lk1Matrix = JSON.parse(localStorage["lk1Matrix"]);        
+        lk1Matrix[0][2] = wert; 
         kehrwert=Math.round(1/wert * 100) / 100 ;
         if (kehrwert > 3) { 
             kehrwert = 3; 
         }  
-        kMatrix[2][1] = kehrwert;
-        localStorage["kMatrix"] = JSON.stringify(kMatrix);
+        lk1Matrix[2][0] = kehrwert;
+        localStorage["lk1Matrix"] = JSON.stringify(lk1Matrix);
     }
 }
 else {

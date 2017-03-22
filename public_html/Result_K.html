@@ -16,7 +16,7 @@
 
             <div class="center title">Ergebnis Kriterien</div>
             <span class="left"><a href="Single_Test3.html">Zurück</a></span>
-            <span class="right"><a href="Dashboard.html">Schließen</a></span>
+            <span class="right"><a href="Single_Testlk1_1.html">Weiter</a></span>
         </div>
 
         <div class="wrap2">
@@ -38,32 +38,36 @@
         var skriterium2= localStorage.getItem("skriterium2");
         var skriterium3= localStorage.getItem("skriterium3");
     
-        matrix = JSON.parse(localStorage["matrix"]);  
-	var matrixResult = multiply( matrix, matrix );
+        kMatrix = JSON.parse(localStorage["kMatrix"]);  
+	var kMatrixResult = multiply( kMatrix, kMatrix );
         
-        localStorage["matrixResult"] = JSON.stringify(matrixResult);
-        zeilenResult1 = matrixResult[0][0] + matrixResult[0][1] + matrixResult[0][2];
-        localStorage.setItem("zeilenResult1", zeilenResult1);
-        zeilenResult2 = matrixResult[1][0] + matrixResult[1][1] + matrixResult[1][2];
-        localStorage.setItem("zeilenResult2", zeilenResult2);
-        zeilenResult3 = matrixResult[2][0] + matrixResult[2][1] + matrixResult[2][2];
-        localStorage.setItem("zeilenResult3", zeilenResult3);
+        localStorage["kMatrixResult"] = JSON.stringify(kMatrixResult);
+        zeilenResultk1 = kMatrixResult[0][0] + kMatrixResult[0][1] + kMatrixResult[0][2];
+        zeilenResultk2 = kMatrixResult[1][0] + kMatrixResult[1][1] + kMatrixResult[1][2];
+        zeilenResultk3 = kMatrixResult[2][0] + kMatrixResult[2][1] + kMatrixResult[2][2];
+        hundertProzent = zeilenResultk1 + zeilenResultk2 + zeilenResultk3;
+        zeilenResultk1 = Math.round(zeilenResultk1 / hundertProzent * 10000)/100;
+        localStorage.setItem("zeilenResultk1", zeilenResultk1);
+        zeilenResultk2 = Math.round(zeilenResultk2 / hundertProzent * 10000)/100;
+        localStorage.setItem("zeilenResultk2", zeilenResultk2);
+        zeilenResultk3 = Math.round(zeilenResultk3 / hundertProzent * 10000)/100;
+        localStorage.setItem("zeilenResultk3", zeilenResultk3);
         var arr = 
         [
-            [skriterium1, zeilenResult1],
-            [skriterium2, zeilenResult2],
-            [skriterium3, zeilenResult3]
+            [skriterium1, zeilenResultk1],
+            [skriterium2, zeilenResultk2],
+            [skriterium3, zeilenResultk3]
         ];
         arr = arr.sort(function(a,b) {
          return a[1] - b[1];
          });
-        alert(arr);
+//        alert(arr);
         var max = document.getElementById("max");
-        max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[2][0] + ',<br /> Wichtung: ' + arr[2][1] + '</h2>';
+        max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[2][0] + ',<br /> Wichtung: ' + arr[2][1] + '%</h2>';
         var med = document.getElementById("med");
-        med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[1][0] + ',<br /> Wichtung: ' + arr[1][1] + '</h2>';
+        med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[1][0] + ',<br /> Wichtung: ' + arr[1][1] + '%</h2>';
         var min = document.getElementById("min");
-        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[0][0] + ',<br /> Wichtung: ' + arr[0][1] + '</h2>';
+        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[0][0] + ',<br /> Wichtung: ' + arr[0][1] + '%</h2>';
     }
     
     

@@ -110,14 +110,40 @@
     });
     
     function init() {
-        var matrix = 
+        
+        var kMatrix = 
         [
             [ 1, 0, 0 ],
             [ 0, 1, 0 ],
             [ 0, 0, 1 ]
         ];
-        localStorage["matrix"] = JSON.stringify(matrix);
+        localStorage["kMatrix"] = JSON.stringify(kMatrix);
+        
+        var lk1Matrix = 
+        [
+            [ 1, 0, 0 ],
+            [ 0, 1, 0 ],
+            [ 0, 0, 1 ]
+        ];
+        localStorage["lk1Matrix"] = JSON.stringify(lk1Matrix);
+        
+        var lk2Matrix = 
+        [
+            [ 1, 0, 0 ],
+            [ 0, 1, 0 ],
+            [ 0, 0, 1 ]
+        ];
+        localStorage["lk2Matrix"] = JSON.stringify(lk2Matrix);
+        
+        var lk3Matrix = 
+        [
+            [ 1, 0, 0 ],
+            [ 0, 1, 0 ],
+            [ 0, 0, 1 ]
+        ];
+        localStorage["lk3Matrix"] = JSON.stringify(lk3Matrix);
     }
+    
 </script>                 
                       
     <script src="js/vendor/jquery.js"></script>

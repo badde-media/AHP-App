@@ -146,14 +146,14 @@ if (typeof(Storage) !== "undefined") {
         
     
     function aktiv(wert) {
-        matrix = JSON.parse(localStorage["matrix"]);        
-        matrix[0][2] = wert;
+        kMatrix = JSON.parse(localStorage["kMatrix"]);        
+        kMatrix[0][2] = wert;
         kehrwert=Math.round(1/wert * 100) / 100 ;
         if (kehrwert > 3) { 
             kehrwert = 3; 
         }  
-        matrix[2][0] = kehrwert;
-        localStorage["matrix"] = JSON.stringify(matrix);
+        kMatrix[2][0] = kehrwert;
+        localStorage["kMatrix"] = JSON.stringify(kMatrix);
     }
 }
 else {
