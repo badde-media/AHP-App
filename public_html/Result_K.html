@@ -34,17 +34,24 @@
 <script> 
     
     function berechne() {
+        // Lade Kriterien-Namen
         var skriterium1= localStorage.getItem("skriterium1");
         var skriterium2= localStorage.getItem("skriterium2");
         var skriterium3= localStorage.getItem("skriterium3");
     
+        // Lade Kriterien-Matrix
         kMatrix = JSON.parse(localStorage["kMatrix"]);  
 	var kMatrixResult = multiply( kMatrix, kMatrix );
         
+        // Lade Matrix-Quadrat
         localStorage["kMatrixResult"] = JSON.stringify(kMatrixResult);
+        
+        // Addiere Matrix zeilenweise
         zeilenResultk1 = kMatrixResult[0][0] + kMatrixResult[0][1] + kMatrixResult[0][2];
         zeilenResultk2 = kMatrixResult[1][0] + kMatrixResult[1][1] + kMatrixResult[1][2];
         zeilenResultk3 = kMatrixResult[2][0] + kMatrixResult[2][1] + kMatrixResult[2][2];
+        
+        // Berechne & speichere prozentuale Anteile der Zeilen
         hundertProzent = zeilenResultk1 + zeilenResultk2 + zeilenResultk3;
         zeilenResultk1 = Math.round(zeilenResultk1 / hundertProzent * 10000)/100;
         localStorage.setItem("zeilenResultk1", zeilenResultk1);
@@ -52,22 +59,26 @@
         localStorage.setItem("zeilenResultk2", zeilenResultk2);
         zeilenResultk3 = Math.round(zeilenResultk3 / hundertProzent * 10000)/100;
         localStorage.setItem("zeilenResultk3", zeilenResultk3);
+        // Kriterienwichtungs-Vektor
         var arr = 
         [
             [skriterium1, zeilenResultk1],
             [skriterium2, zeilenResultk2],
             [skriterium3, zeilenResultk3]
         ];
+        // Kriterienwichtungs-Vektor absteigend sortieren und speichern
         arr = arr.sort(function(a,b) {
-         return a[1] - b[1];
+         return b[1] - a[1];
          });
+         localStorage["arr"] = JSON.stringify(arr);
 //        alert(arr);
+        // Ausgabe Kriterienwichtung
         var max = document.getElementById("max");
-        max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[2][0] + ',<br /> Wichtung: ' + arr[2][1] + '%</h2>';
+        max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[0][0] + ',<br /> Wichtung: ' + arr[0][1] + '%</h2>';
         var med = document.getElementById("med");
         med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[1][0] + ',<br /> Wichtung: ' + arr[1][1] + '%</h2>';
         var min = document.getElementById("min");
-        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[0][0] + ',<br /> Wichtung: ' + arr[0][1] + '%</h2>';
+        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[2][0] + ',<br /> Wichtung: ' + arr[2][1] + '%</h2>';
     }
     
     

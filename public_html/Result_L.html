@@ -20,6 +20,16 @@
         </div>
 
         <div class="wrap2">
+            <div id="g1" class="center"></div>
+            <div id="g1max" class="center"></div>
+
+            <div id="g1med" class="center">
+            </div>
+            <div id="g1min" class="center">
+            </div>
+            <br />
+            <br />
+            
             <div id="k1" class="center"></div>
             <div id="k1max" class="center"></div>
 
@@ -27,7 +37,8 @@
             </div>
             <div id="k1min" class="center">
             </div>
-            
+            <br />
+            <br />
             
             <div id="k2" class="center"></div>
             <div id="k2max" class="center"></div>
@@ -36,6 +47,8 @@
             </div>
             <div id="k2min" class="center">
             </div>
+            <br />
+            <br />
             
             
             <div id="k3" class="center"></div>
@@ -61,9 +74,9 @@
         var sloesung1  = localStorage.getItem("sloesung1");
         var sloesung2  = localStorage.getItem("sloesung2");
         var sloesung3  = localStorage.getItem("sloesung3");
-        var zeilenResultk1  = localStorage.getItem("zeilenResultk1")/100;
-        var zeilenResultk2  = localStorage.getItem("zeilenResultk2")/100;
-        var zeilenResultk3  = localStorage.getItem("zeilenResultk3")/100;
+        var zeilenResultk1  = localStorage.getItem("zeilenResultk1");
+        var zeilenResultk2  = localStorage.getItem("zeilenResultk2");
+        var zeilenResultk3  = localStorage.getItem("zeilenResultk3");
     
         // lade und quadriere Matrizen
         lk1Matrix = JSON.parse(localStorage["lk1Matrix"]);  
@@ -98,13 +111,64 @@
         hundertProzentlk2 = zeilenResultlk2_1 + zeilenResultlk2_2 + zeilenResultlk2_3;
         hundertProzentlk3 = zeilenResultlk3_1 + zeilenResultlk3_2 + zeilenResultlk3_3;
         
-        // berechne zeilenweise Prozentsätze mit Kriterienwichtung
+        // berechne zeilenweise Prozentsätze
         zeilenResultlk1_1 = Math.round(zeilenResultlk1_1 / hundertProzentlk1 * 10000)/100;
         localStorage.setItem("zeilenResultlk1_1", zeilenResultlk1_1);
         zeilenResultlk1_2 = Math.round(zeilenResultlk1_2 / hundertProzentlk1 * 10000)/100;
         localStorage.setItem("zeilenResultlk1_2", zeilenResultlk1_2);
         zeilenResultlk1_3 = Math.round(zeilenResultlk1_3 / hundertProzentlk1 * 10000)/100;
         localStorage.setItem("zeilenResultlk1_3", zeilenResultlk1_3);
+        zeilenResultlk2_1 = Math.round(zeilenResultlk2_1 / hundertProzentlk2 * 10000)/100;
+        localStorage.setItem("zeilenResultlk2_1", zeilenResultlk2_1);
+        zeilenResultlk2_2 = Math.round(zeilenResultlk2_2 / hundertProzentlk2 * 10000)/100;
+        localStorage.setItem("zeilenResultlk2_2", zeilenResultlk2_2);
+        zeilenResultlk2_3 = Math.round(zeilenResultlk2_3 / hundertProzentlk2 * 10000)/100;
+        localStorage.setItem("zeilenResultlk2_3", zeilenResultlk2_3);
+        zeilenResultlk3_1 = Math.round(zeilenResultlk3_1 / hundertProzentlk3 * 10000)/100;
+        localStorage.setItem("zeilenResultlk3_1", zeilenResultlk3_1);
+        zeilenResultlk3_2 = Math.round(zeilenResultlk3_2 / hundertProzentlk3 * 10000)/100;
+        localStorage.setItem("zeilenResultlk3_2", zeilenResultlk3_2);
+        zeilenResultlk3_3 = Math.round(zeilenResultlk3_3 / hundertProzentlk3 * 10000)/100;
+        localStorage.setItem("zeilenResultlk3_3", zeilenResultlk3_3);
+        
+        // Berechnung Gesamtwertung = Kriterienwichtung * Lösungswichtung (zeilenweise)
+        gwlk1_1 = Math.round(zeilenResultk1 * zeilenResultlk1_1 )/100;
+        gwlk1_2 = Math.round(zeilenResultk1 * zeilenResultlk1_2 )/100;
+        gwlk1_3 = Math.round(zeilenResultk1 * zeilenResultlk1_3 )/100;
+        gwlk2_1 = Math.round(zeilenResultk2 * zeilenResultlk2_1 )/100;
+        gwlk2_2 = Math.round(zeilenResultk2 * zeilenResultlk2_2 )/100;
+        gwlk2_3 = Math.round(zeilenResultk2 * zeilenResultlk2_3 )/100;
+        gwlk3_1 = Math.round(zeilenResultk3 * zeilenResultlk3_1 )/100;
+        gwlk3_2 = Math.round(zeilenResultk3 * zeilenResultlk3_2 )/100;
+        gwlk3_3 = Math.round(zeilenResultk3 * zeilenResultlk3_3 )/100;
+        // Berechnung Gesamtwertung = Addition der jeweils 1., 2. und 3. Werte
+        gwlk1 = gwlk1_1 + gwlk2_1 + gwlk3_1;
+        gwlk2 = gwlk1_2 + gwlk2_2 + gwlk3_2;
+        gwlk3 = gwlk1_3 + gwlk2_3 + gwlk3_3;
+        
+        // Ausgabe Gesamtwichtung
+        var arrG = 
+        [
+            [sloesung1, gwlk1],
+            [sloesung2, gwlk2],
+            [sloesung3, gwlk3]
+        ];
+        arrG = arrG.sort(function(a,b) {
+         return b[1] - a[1];
+         });
+//        alert(arr);
+        var g1 = document.getElementById("g1");
+        g1.innerHTML = '<h1>Gesamtwichtung</h1>';
+        var g1max = document.getElementById("g1max");
+        g1max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrG[0][0] + ',<br /> Wichtung: ' + arrG[0][1] + '%</h3>';
+        var g1med = document.getElementById("g1med");
+        g1med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrG[1][0] + ',<br /> Wichtung: ' + arrG[1][1] + '%</h3>';
+        var g1min = document.getElementById("g1min");
+        g1min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrG[2][0] + ',<br /> Wichtung: ' + arrG[2][1] + '%</h3>';
+        
+        
+        
+        // Ausgabe Kriterium 1
         var arrK1 = 
         [
             [sloesung1, zeilenResultlk1_1],
@@ -112,17 +176,57 @@
             [sloesung3, zeilenResultlk1_3]
         ];
         arrK1 = arrK1.sort(function(a,b) {
-         return a[1] - b[1];
+         return b[1] - a[1];
          });
 //        alert(arr);
         var k1 = document.getElementById("k1");
-        //k1.innerHTML = '<h1>' + skriterium1 + '</h2>';
+        k1.innerHTML = '<h1>' + skriterium1 + ' (' + zeilenResultk1 + '%)</h1>';
         var k1max = document.getElementById("k1max");
-        k1max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>L&ouml;sung: ' + arrK1[2][0] + ',<br /> Wichtung: ' + arrK1[2][1] + '%</h2>';
+        k1max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK1[0][0] + ',<br /> Wichtung: ' + arrK1[0][1] + '%</h3>';
         var k1med = document.getElementById("k1med");
-        k1med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>L&ouml;sung: ' + arrK1[1][0] + ',<br /> Wichtung: ' + arrK1[1][1] + '%</h2>';
+        k1med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK1[1][0] + ',<br /> Wichtung: ' + arrK1[1][1] + '%</h3>';
         var k1min = document.getElementById("k1min");
-        k1min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>L&ouml;sung: ' + arrK1[0][0] + ',<br /> Wichtung: ' + arrK1[0][1] + '%</h2>';
+        k1min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK1[2][0] + ',<br /> Wichtung: ' + arrK1[2][1] + '%</h3>';
+        
+        // Ausgabe Kriterium 2
+        var arrK2 = 
+        [
+            [sloesung1, zeilenResultlk2_1],
+            [sloesung2, zeilenResultlk2_2],
+            [sloesung3, zeilenResultlk2_3]
+        ];
+        arrK2 = arrK2.sort(function(a,b) {
+         return b[1] - a[1];
+         });
+//        alert(arr);
+        var k2 = document.getElementById("k2");
+        k2.innerHTML = '<h1>' + skriterium2 + ' (' + zeilenResultk2 + '%)</h1>';
+        var k2max = document.getElementById("k2max");
+        k2max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK2[0][0] + ',<br /> Wichtung: ' + arrK2[0][1] + '%</h3>';
+        var k2med = document.getElementById("k2med");
+        k2med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK2[1][0] + ',<br /> Wichtung: ' + arrK2[1][1] + '%</h3>';
+        var k2min = document.getElementById("k2min");
+        k2min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK2[2][0] + ',<br /> Wichtung: ' + arrK2[2][1] + '%</h3>';
+        
+        // Ausgabe Kriterium 3
+        var arrK3 = 
+        [
+            [sloesung1, zeilenResultlk3_1],
+            [sloesung2, zeilenResultlk3_2],
+            [sloesung3, zeilenResultlk3_3]
+        ];
+        arrK3 = arrK3.sort(function(a,b) {
+         return b[1] - a[1];
+         });
+//        alert(arr);
+        var k3 = document.getElementById("k3");
+        k3.innerHTML = '<h1>' + skriterium3 + ' (' + zeilenResultk3 + '%)</h1>';
+        var k3max = document.getElementById("k3max");
+        k3max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK3[0][0] + ',<br /> Wichtung: ' + arrK3[0][1] + '%</h3>';
+        var k1med = document.getElementById("k3med");
+        k3med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK3[1][0] + ',<br /> Wichtung: ' + arrK3[1][1] + '%</h3>';
+        var k1min = document.getElementById("k3min");
+        k3min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK3[2][0] + ',<br /> Wichtung: ' + arrK3[2][1] + '%</h3>';
     }
     
     
