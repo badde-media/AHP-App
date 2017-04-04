@@ -74,11 +74,19 @@
 //        alert(arr);
         // Ausgabe Kriterienwichtung
         var max = document.getElementById("max");
-        max.innerHTML = '<svg width="180" height="180"><circle  cx="90" cy="90" r="80" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[0][0] + ',<br /> Wichtung: ' + arr[0][1] + '%</h2>';
+        max.innerHTML = '<svg width="180" height="180"> <circle  cx="90" cy="90" r="80" stroke="" \n\
+        stroke-width="4" fill="#006cb0" /> \n\
+        <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="30px" dy=".7em">' +arr[0][1]+ '% </text> \n\
+        </svg> <h2> ' + arr[0][0] + '</h2>';
+        
+        
         var med = document.getElementById("med");
-        med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[1][0] + ',<br /> Wichtung: ' + arr[1][1] + '%</h2>';
+        med.innerHTML = '<svg width="150" height="150"><circle cx="70" cy="70" r="60" stroke="" \n\
+        stroke-width="4" fill="#006cb0" /><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20px" dy=".3em">' +arr[1][1]+ '% </text></svg> <h2> ' + arr[1][0] + '<br /> Wichtung: ' + arr[1][1] + '%</h2>';
+        
         var min = document.getElementById("min");
-        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h2>Kriterium: ' + arr[2][0] + ',<br /> Wichtung: ' + arr[2][1] + '%</h2>';
+        min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" \n\
+        stroke-width="4" fill="#006cb0" /><text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20px" >' +arr[2][1]+ '% </text></svg> <h2> ' + arr[2][0] + '<br /> Wichtung: ' + arr[2][1] + '%</h2>';
     }
     
     

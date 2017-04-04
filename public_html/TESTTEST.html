@@ -21,9 +21,9 @@
 
         <!-- Start Title Bar -->
         <div class="primary title-bar">
-            <div class="center title">Bewertung Lösungen</div>
-            <span class="left"><a href="Single_Testlk2_1.html">Zurück</a></span>
-            <span class="right"><a href="Single_Testlk2_3.html">Weiter</a></span>
+           <div class="center title">Bewertung Kriterien</div>
+            <span class="left"><a href="Single_TestOverview.html">Zurück</a></span>
+            <span class="right"><a href="Single_Test2.html">Weiter</a></span>
         </div>
 
         <!-- End Title Bar -->
@@ -41,7 +41,6 @@
             <div class="small-12 columns">
                 
   <div id="sloadData"> </div>
-  <div id="sloadData1"> </div>
     
          
             
@@ -68,15 +67,7 @@
 <div class="skala-floating-box-max" onclick="aktiv(this, 3)"></div>     
 </div> 
      
-     
-     <div class="skala-description">
-         <div class="skala-floating-descrip-max">Total zutreffend</div>
-         <div class="skala-floating-descrip-medium"></div>
-         <div class="skala-floating-descrip-small">Gleichbedeutend</div>
-         <div class="skala-floating-descrip-medium"></div>
-         <div class="skala-floating-descrip-max">Total zutreffend</div>
-         
-     </div>
+
   
   </div> </div> 
         
@@ -131,15 +122,14 @@ if (typeof(Storage) !== "undefined") {
     if (sloesung2 ===null) {sloesung2="[Platzhalter - Loesung2]";}
     if (sloesung3 ===null) {sloesung3="[Platzhalter - Loesung3]";}
     $("#sloadData").html ("<h2>" + sname + "</h2>");
-    $("#sloadData1").html ("<h2>" + skriterium2 + "</h2>");
  
-    $("#sloadData2").html("<h3>" + sloesung1 + "</h3>");
-    $("#sloadData3").html("<h3>" + sloesung3 + "</h3>");
-//    $("#sloadData4").html("<h3>" + skriterium3 + "</h3>");
-////    $("#sloadData5").html("<h3>" + skriterium4 + "</h3>");
-//    $("#sloadData6").html(sloesung1);
-//    $("#sloadData7").html(sloesung2);
-//    $("#sloadData8").html(sloesung3);
+    $("#sloadData2").html("<h3>" + skriterium1 + "</h3>");
+    $("#sloadData3").html("<h3>" + skriterium2 + "</h3>");
+    $("#sloadData4").html("<h3>" + skriterium3 + "</h3>");
+//    $("#sloadData5").html("<h3>" + skriterium4 + "</h3>");
+    $("#sloadData6").html(sloesung1);
+    $("#sloadData7").html(sloesung2);
+    $("#sloadData8").html(sloesung3);
     
  /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
         'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
@@ -147,17 +137,18 @@ if (typeof(Storage) !== "undefined") {
 }); */
         
     
-    function aktiv(caller, wert) {
-        lk2Matrix = JSON.parse(localStorage["lk2Matrix"]);        
-        lk2Matrix[0][2] = wert; 
+    function aktiv(e, wert) {
+        kMatrix = JSON.parse(localStorage["kMatrix"]);        
+        kMatrix[0][1] = wert; 
         kehrwert=Math.round(1/wert * 100) / 100 ;
         if (kehrwert > 3) { 
             kehrwert = 3; 
         }  
-        lk2Matrix[2][0] = kehrwert;
-        localStorage["lk2Matrix"] = JSON.stringify(lk2Matrix);
-         $(caller).siblings().removeClass("selected");
-        $(caller).addClass("selected")
+        kMatrix[1][0] = kehrwert;
+        localStorage["kMatrix"] = JSON.stringify(kMatrix);
+        $(e).siblings().removeClass("selected");
+        $(e).addClass("selected")
+               
     }
 }
 else {
@@ -170,25 +161,3 @@ else {
 
 
 </script>
-         
-
-        
-
-
-          
-           
-   <!-- End Footer -->
-     
-       <script type="text/javascript">     
-            $("select").imagepicker();
-         </script>
-        <script src="js/vendor/jquery.js"></script>
-        <script src="js/vendor/what-input.js"></script>
-        <script src="js/vendor/foundation.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/Storage.js"></script>
-        <script>
-            $(document).foundation();
-        </script>
-    </body>
-</html>

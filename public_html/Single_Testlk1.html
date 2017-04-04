@@ -147,7 +147,7 @@ if (typeof(Storage) !== "undefined") {
 }); */
         
     
-    function aktiv(wert) {
+    function aktiv(caller, wert) {
         lk1Matrix = JSON.parse(localStorage["lk1Matrix"]);        
         lk1Matrix[0][1] = wert; 
         kehrwert=Math.round(1/wert * 100) / 100 ;
@@ -156,6 +156,8 @@ if (typeof(Storage) !== "undefined") {
         }  
         lk1Matrix[1][0] = kehrwert;
         localStorage["lk1Matrix"] = JSON.stringify(lk1Matrix);
+         $(caller).siblings().removeClass("selected");
+        $(caller).addClass("selected")
     }
 }
 else {

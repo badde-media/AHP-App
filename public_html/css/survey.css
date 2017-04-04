@@ -32,7 +32,9 @@ h1.likert-header {
   padding-left:4.25%;
   margin:20px 0 0;
 }
-form .skala {
+form .skala :focus {
+outline: none;
+
     
   display:block;
   font-size: 14px;
@@ -40,9 +42,11 @@ form .skala {
   padding: 30px 0 0 4.25%;
   margin-bottom:10px;
   
+  
 }
 
- .form .skala.is-active {
+ .form .skala.is-active :focus {
+outline: none; 
    background-color: #8a8a8a; }
     
     
@@ -126,6 +130,10 @@ skala {
    
 }
 
+.skala .selected{
+    outline: 5px solid #c32e04;
+}
+
 .skala-floating-box-max {
     display: inline-block;
     width: 75px;
@@ -133,6 +141,8 @@ skala {
     margin: 10px;
     background: #006cb0;
 }
+
+
 
 .skala-floating-box-medium {
     display: inline-block;
@@ -195,4 +205,12 @@ skala .max {
 
 .center {
     text-align: center;
+}
+
+
+
+.text {
+	text-anchor: middle;
+	color: floralwhite;
+        
 }

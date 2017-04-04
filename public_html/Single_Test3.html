@@ -60,11 +60,11 @@
       
      <br> <br  />
      <div class="skala">
-         <div class="skala-floating-box-max" onclick="aktiv(0.33); this.style.border = '5px solid #c32e04';"></div>
-<div class="skala-floating-box-medium" onclick="aktiv(0.5); this.style.border = '5px solid #c32e04';"></div>
-<div class="skala-floating-box-small" onclick="aktiv(1); this.style.border = '5px solid #c32e04';"></div>
-<div class="skala-floating-box-medium" onclick="aktiv(2); this.style.border = '5px solid #c32e04';"></div>
-<div class="skala-floating-box-max" onclick="aktiv(3); this.style.border = '5px solid #c32e04';"></div>     
+         <div class="skala-floating-box-max" onclick="aktiv(this , 0.33)"></div>
+<div class="skala-floating-box-medium" onclick="aktiv(this , 0.5)"></div>
+<div class="skala-floating-box-small" onclick="aktiv(this, 1)"></div>
+<div class="skala-floating-box-medium" onclick="aktiv(this, 2)"></div>
+<div class="skala-floating-box-max" onclick="aktiv(this, 3)"></div>     
 </div> 
      
      
@@ -145,7 +145,7 @@ if (typeof(Storage) !== "undefined") {
 }); */
         
     
-    function aktiv(wert) {
+    function aktiv(caller, wert) {
         kMatrix = JSON.parse(localStorage["kMatrix"]);        
         kMatrix[1][2] = wert;
         kehrwert=Math.round(1/wert * 100) / 100 ;
@@ -154,6 +154,8 @@ if (typeof(Storage) !== "undefined") {
         }  
         kMatrix[2][1] = kehrwert;
         localStorage["kMatrix"] = JSON.stringify(kMatrix);
+         $(caller).siblings().removeClass("selected");
+         $(caller).addClass("selected")
     }
 }
 else {
