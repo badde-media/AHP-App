@@ -148,14 +148,14 @@ if (typeof(Storage) !== "undefined") {
         
     
     function aktiv(caller, wert) {
-        lk2Matrix = JSON.parse(localStorage["lk2Matrix"]);        
-        lk2Matrix[0][1] = wert; 
+        loesungenMatrixKriterium2 = JSON.parse(localStorage["loesungenMatrixKriterium2"]);        
+        loesungenMatrixKriterium2[0][1] = wert; 
         kehrwert=Math.round(1/wert * 100) / 100 ;
         if (kehrwert > 3) { 
             kehrwert = 3; 
         }  
-        lk2Matrix[1][0] = kehrwert;
-        localStorage["lk2Matrix"] = JSON.stringify(lk2Matrix);
+        loesungenMatrixKriterium2[1][0] = kehrwert;
+        localStorage["loesungenMatrixKriterium2"] = JSON.stringify(loesungenMatrixKriterium2);
          $(caller).siblings().removeClass("selected");
         $(caller).addClass("selected")
     }

@@ -39,10 +39,10 @@
     
     function berechne() {
         
-        kMatrix = JSON.parse(localStorage["kMatrix"]);  
-	var kMatrixResult = multiply( kMatrix, kMatrix );
+        kriterienMatrix = JSON.parse(localStorage["kriterienMatrix"]);  
+	var kriterienMatrixResult = multiply( kriterienMatrix, kriterienMatrix );
         
-        localStorage["kMatrixResult"] = JSON.stringify(kMatrixResult);
+        localStorage["kriterienMatrixResult"] = JSON.stringify(kriterienMatrixResult);
     }
   
 function multiply( mA, mB ) {

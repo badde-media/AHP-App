@@ -148,14 +148,14 @@ if (typeof(Storage) !== "undefined") {
         
     
     function aktiv(caller, wert) {
-        lk3Matrix = JSON.parse(localStorage["lk3Matrix"]);        
-        lk3Matrix[0][1] = wert; 
+        loesungenMatrixKriterium3 = JSON.parse(localStorage["loesungenMatrixKriterium3"]);        
+        loesungenMatrixKriterium3[0][1] = wert; 
         kehrwert=Math.round(1/wert * 100) / 100 ;
         if (kehrwert > 3) { 
             kehrwert = 3; 
         }  
-        lk3Matrix[1][0] = kehrwert;
-        localStorage["lk3Matrix"] = JSON.stringify(lk3Matrix);
+        loesungenMatrixKriterium3[1][0] = kehrwert;
+        localStorage["loesungenMatrixKriterium3"] = JSON.stringify(loesungenMatrixKriterium3);
          $(caller).siblings().removeClass("selected");
         $(caller).addClass("selected")
     }
