@@ -1,0 +1,275 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="Bilder/favicon.ico">
+        <title>AHP APP</title>
+        <link rel="stylesheet" href="css/survey.css">
+        <link rel="stylesheet" href="css/foundation.css">
+        <link rel="stylesheet" href="css/foundation-apps.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/image-picker.css">
+        <script type="text/javascript" src="js/image-picker.js"></script>
+        <script type="text/javascript" src="js/image-picker.min.js"></script>
+        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
+
+    </head>
+    <body onLoad="init();">
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+            <div class="center title">Bewertung Lösungen</div>
+            <span class="left"><a href="Result_K.html.html">Zurück</a></span>
+            <span class="right"><a href="#" onclick="update();">Weiter</a></span>
+        </div>
+
+        <!-- End Title Bar -->
+        <!-- Start Head --> 
+
+        <!-- End Head --> 
+        <!-- Start Body --> 
+
+
+
+        <!--    <div class="small-12-emptyContainer columns">
+            </div> --> 
+
+        <div class="row column text-center">
+            <div class="small-12 columns">
+
+                <div id="sloadData"> </div>
+                <div id="sloadData1"> </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+        <div class="wrap2">
+            <div class="row column text-center" id="slider">
+
+                <div class="skala-criteria1" id="sloadData2"></div>  
+                <div class="skala-criteria-free"><h5>oder</h5></div>
+                <div class="skala-criteria2" id="sloadData3"></div> 
+
+                <br> <br  />
+                <div class="skala">
+                    <div class="skala-floating-box-max" onclick="aktiv(this, 0.33, krit, durchlaufY, durchlaufX)"></div>
+                    <div class="skala-floating-box-medium" onclick="aktiv(this, 0.5, krit, durchlaufY, durchlaufX)"></div>
+                    <div class="skala-floating-box-small" onclick="aktiv(this, 1, krit, durchlaufY, durchlaufX)"></div>
+                    <div class="skala-floating-box-medium" onclick="aktiv(this, 2, krit, durchlaufY, durchlaufX)"></div>
+                    <div class="skala-floating-box-max" onclick="aktiv(this, 3, krit, durchlaufY, durchlaufX)"></div>     
+                </div> 
+
+
+                <div class="skala-description">
+                    <div class="skala-floating-descrip-max">Total zutreffend</div>
+                    <div class="skala-floating-descrip-medium"></div>
+                    <div class="skala-floating-descrip-small">Gleich</div>
+                    <div class="skala-floating-descrip-medium"></div>
+                    <div class="skala-floating-descrip-max">Total zutreffend</div>
+
+                </div>
+
+            </div> 
+        </div> 
+
+
+
+        <div class="row column text-center">
+            <div class="small-12-criteria columns">
+                <h3><a href="Single_TestOverview.html"> Zur Übersicht</a></h3></div>
+
+            <!--
+<div class="row column text-center">
+<div class="small-12-bottom columns">
+<select id="selectImage" class="image-picker">
+<option value=""></option>
+<option data-img-src='assets/img/Balken_L.png' value='Dominant_Links'>Dominiert</option>
+<option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Links'>Etwas</option>
+<option data-img-src='assets/img/Balken_S.png' value='Neutral'>Neutral</option>
+<option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Rechts'>Etwas</option>
+<option data-img-src='assets/img/Balken_L.png' value='Dominant_Rechts'>Dominiert</option>   
+</select>    
+        </div> </div> --!>
+
+
+       
+      </div>
+      
+
+            <!-- End Body -->
+
+
+            <script>
+
+
+                var durchlauf = localStorage.getItem("durchlauf");
+                if (durchlauf === null) {
+                    durchlauf = 0;
+                };
+//                parseInt(durchlauf);
+                var durchlaufX = localStorage.getItem("durchlaufX");
+                if (durchlaufX === null) {
+                    durchlaufX = 1;
+                };
+//                parseInt(durchlaufX);
+                var durchlaufY = localStorage.getItem("durchlaufY");
+                if (durchlaufY === null) {
+                    durchlaufY = 0;
+                };
+//                parseInt(durchlaufY);
+                var kriterium = localStorage.getItem("kriterium");
+                if (kriterium === null) {
+                    kriterium = 0;
+                };
+//                parseInt(kriterium);
+                
+                if (typeof (Storage) !== "undefined") {
+                    
+                    var sname = localStorage.getItem("sname");
+                    if (sname === null) {
+                        sname = "[Platzhalter - TITLE]";
+                    }
+
+                    var kriterienAnzahl = parseInt(localStorage.getItem("kriterienAnzahl"));
+                    var loesungenAnzahl = localStorage.getItem("loesungenAnzahl");
+                    
+                    var kriterienMatrixWerteAnzahl = localStorage.getItem("kriterienMatrixWerteAnzahl");
+                    var loesungenMatrixKriterium1WerteAnzahl = localStorage.getItem("loesungenMatrixKriterium1WerteAnzahl");
+                    // Lade Kriteriennamen in Array
+                    var kriterienArray = [];
+                    for (i = 1; i <= kriterienAnzahl; i++) {
+                        var VarName = "skriterium" + i;
+                        var webStorage = localStorage.getItem(VarName);
+                        if (webStorage !== null) {
+                            kriterienArray.push(webStorage);
+                        } else {
+                            kriterienArray.push("[Kriterium" + i + "]");
+                        };
+                    };
+
+                    // Lade Lösungennamen in Array
+                    var loesungenArray = [];
+                    for (i = 1; i <= loesungenAnzahl; i++) {
+                        var VarName = "sloesung" + i;
+                        var webStorage = localStorage.getItem(VarName);
+                        if (webStorage !== null) {
+                            loesungenArray.push(webStorage);
+                        } else {
+                            loesungenArray.push("[L&ouml;sung" + i + "]");
+                        };
+                    };
+                    
+                    // lade Lösungsmatrix
+                    var krit = parseInt(kriterium) + 1;
+                    krit.toString();
+                    var loesungenMatrixKriterium = "loesungenMatrixKriterium"+krit;
+                    loesungenMatrixKriterium.toString();
+//                    var kriterienMatrix = JSON.parse(localStorage["kriterienMatrix"]);
+                    var loesungenMatrix = JSON.parse(localStorage[loesungenMatrixKriterium]);
+                     
+                    // lädt KriterienMatrix
+                    // var kriterienMatrix = JSON.parse(localStorage["kriterienMatrix"]);
+
+                    /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
+                     'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
+                     'color' : '#fff' , 'line-height' : '1.2' 
+                     }); */
+        
+                    function init() {
+                        var sloesung1 = loesungenArray[durchlaufY];
+                        var sloesung2 = loesungenArray[durchlaufX];
+                        $("#sloadData1").html("<h2>" + kriterienArray[kriterium] + "</h2>");
+                        $("#sloadData2").html("<h3>" + sloesung1 + "</h3>");
+                        $("#sloadData3").html("<h3>" + sloesung2 + "</h3>");
+                    }
+                    
+                    function update() {
+                        
+                        if(durchlaufX < loesungenAnzahl-1) {
+                            durchlaufX++;
+                        } else {
+                            durchlaufY++;
+                            durchlaufX = durchlaufY + 1;
+                        }
+                        
+                        if (durchlauf < loesungenMatrixKriterium1WerteAnzahl-1) {
+                            window.location.reload();
+                            durchlauf++;
+                            localStorage.setItem("durchlauf", durchlauf);
+                            localStorage.setItem("durchlaufX", durchlaufX);
+                            localStorage.setItem("durchlaufY", durchlaufY);
+                        } else {
+                            if (kriterium<kriterienAnzahl-1) {
+                                window.location.reload();
+                                kriterium++;
+                                localStorage.setItem("kriterium", kriterium);
+                                durchlauf = 0;
+                                durchlaufX = 1;
+                                durchlaufY = 0;
+                                localStorage.setItem("durchlauf", durchlauf);
+                                localStorage.setItem("durchlaufX", durchlaufX);
+                                localStorage.setItem("durchlaufY", durchlaufY);
+                            } else {
+                                parseInt(kriterium);
+//                                if (kriterium==kriterienAnzahl) {
+                                    window.location='Result_L.html';
+//                                }
+                            }
+                        }
+                    }
+
+
+
+                    function aktiv(caller, wert, kr, posY, posX) {
+                        
+                        loesungenMatrix[posY][posX] = wert;
+                        kehrwert = Math.round(1 / wert * 100) / 100;
+                        if (kehrwert > 3) {
+                            kehrwert = 3;
+                        }
+                        loesungenMatrix[posX][posY] = kehrwert;
+                        localStorage["loesungenMatrixKriterium"+kr] = JSON.stringify(loesungenMatrix);
+                        $(caller).siblings().removeClass("selected");
+                        $(caller).addClass("selected");
+                    }
+                } else {
+                    document.getElementById("loadData").innerHTML = "Ihr Webbrowser unterstützt kein Web Storage!";
+                }
+
+
+
+
+
+
+            </script>
+
+
+
+
+
+
+
+            <!-- End Footer -->
+
+            <script type="text/javascript">
+                $("select").imagepicker();
+            </script>
+            <script src="js/vendor/jquery.js"></script>
+            <script src="js/vendor/what-input.js"></script>
+            <script src="js/vendor/foundation.js"></script>
+            <script src="js/app.js"></script>
+            <script src="js/Storage.js"></script>
+            <script>
+               $(document).foundation();
+            </script>
+    </body>
+</html>

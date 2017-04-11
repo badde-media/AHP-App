@@ -1,0 +1,192 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Bilder/favicon.ico">
+    <title>AHP APP</title>
+    <link rel="stylesheet" href="css/survey.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation-apps.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/image-picker.css">
+    <script type="text/javascript" src="js/image-picker.js"></script>
+    <script type="text/javascript" src="js/image-picker.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
+    
+  </head>
+    <body>
+
+        <!-- Start Title Bar -->
+        <div class="primary title-bar">
+           <div class="center title">Bewertung Kriterien</div>
+            <span class="left"><a href="Single_Test1.html">Zurück</a></span>
+            <span class="right"><a href="Single_Test3.html">Weiter</a></span>
+        </div>
+
+        <!-- End Title Bar -->
+        <!-- Start Head --> 
+ 
+         <!-- End Head --> 
+        <!-- Start Body --> 
+      
+        
+        
+        <!--    <div class="small-12-emptyContainer columns">
+            </div> --> 
+                 
+       <div class="row column text-center">
+            <div class="small-12 columns">
+                
+  <div id="sloadData"> </div>
+    
+         
+            
+   
+  
+            </div>
+        </div>
+        
+        
+     
+        <div class="wrap2">
+  <div class="row column text-center">
+
+      <div class="skala-criteria1" id="sloadData2"></div>  
+      <div class="skala-criteria-free"><h5>oder</h5></div>
+      <div class="skala-criteria2" id="sloadData4"></div> 
+      
+     <br> <br  />
+     <div class="skala">
+         <div class="skala-floating-box-max" onclick="aktiv(this , 0.33)"></div>
+<div class="skala-floating-box-medium" onclick="aktiv(this , 0.5)"></div>
+<div class="skala-floating-box-small" onclick="aktiv(this, 1)"></div>
+<div class="skala-floating-box-medium" onclick="aktiv(this, 2)"></div>
+<div class="skala-floating-box-max" onclick="aktiv(this, 3)"></div>     
+</div> 
+     
+     
+     <div class="skala-description">
+         <div class="skala-floating-descrip-max">Total zutreffend</div>
+         <div class="skala-floating-descrip-medium"></div>
+         <div class="skala-floating-descrip-small">Gleichbedeutend</div>
+         <div class="skala-floating-descrip-medium"></div>
+         <div class="skala-floating-descrip-max">Total zutreffend</div>
+         
+     </div>
+  
+  </div> </div> 
+        
+        
+            
+        <div class="row column text-center">
+            <div class="small-12-criteria columns">
+                <h3><a href="Single_TestOverview.html"> Zur Übersicht</a></h3></div>
+
+                <!--
+    <div class="row column text-center">
+    <div class="small-12-bottom columns">
+    <select id="selectImage" class="image-picker">
+    <option value=""></option>
+    <option data-img-src='assets/img/Balken_L.png' value='Dominant_Links'>Dominiert</option>
+    <option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Links'>Etwas</option>
+    <option data-img-src='assets/img/Balken_S.png' value='Neutral'>Neutral</option>
+    <option data-img-src='assets/img/Balken_M.png' value='Mittelwert_Rechts'>Etwas</option>
+    <option data-img-src='assets/img/Balken_L.png' value='Dominant_Rechts'>Dominiert</option>   
+    </select>    
+            </div> </div> --!>
+
+    
+           
+          </div>
+          
+
+        <!-- End Body -->
+  
+        
+         <script> 
+  
+
+  
+
+if (typeof(Storage) !== "undefined") {
+    var sname= localStorage.getItem("sname");
+
+    var skriterium1= localStorage.getItem("skriterium1");
+    var skriterium2= localStorage.getItem("skriterium2");
+    var skriterium3= localStorage.getItem("skriterium3");
+//    var skriterium4= localStorage.getItem("skriterium4");
+    var sloesung1= localStorage.getItem("sloesung1");
+    var sloesung2= localStorage.getItem("sloesung2");
+    var sloesung3= localStorage.getItem("sloesung3");
+    if (sname === null) { sname ="[Platzhalter - TITLE]"; }
+    if (skriterium1 ===null) {skriterium1="[Platzhalter - Kriterium1]";}
+    if (skriterium2 ===null) {skriterium2="[Platzhalter - Kriterium2]";}
+    if (skriterium3 ===null) {skriterium3="[Platzhalter - Kriterium3]";}
+//    if (skriterium4 ===null) {skriterium4="[Platzhalter - Kriterium4]";}
+    if (sloesung1 ===null) {sloesung1="[Platzhalter - Loesung1]";}
+    if (sloesung2 ===null) {sloesung2="[Platzhalter - Loesung2]";}
+    if (sloesung3 ===null) {sloesung3="[Platzhalter - Loesung3]";}
+    $("#sloadData").html ("<h2>" + sname + "</h2>");
+ 
+    $("#sloadData2").html("<h3>" + skriterium1 + "</h3>");
+    $("#sloadData3").html("<h3>" + skriterium2 + "</h3>");
+    $("#sloadData4").html("<h3>" + skriterium3 + "</h3>");
+//    $("#sloadData5").html("<h3>" + skriterium4 + "</h3>");
+    $("#sloadData6").html(sloesung1);
+    $("#sloadData7").html(sloesung2);
+    $("#sloadData8").html(sloesung3);
+    
+ /*   $("#loadData6, #loadData7, #loadData8").css({'background-color': '#00558b',
+        'padding' : '9pt', 'font-size' : '1.8rem', 'margin' : '3pt' , 
+        'color' : '#fff' , 'line-height' : '1.2' 
+}); */
+        
+    
+    function aktiv(caller, wert) {
+        kriterienMatrix = JSON.parse(localStorage["kriterienMatrix"]);        
+        kriterienMatrix[0][2] = wert;
+        kehrwert=Math.round(1/wert * 100) / 100 ;
+        if (kehrwert > 3) { 
+            kehrwert = 3; 
+        }  
+        kriterienMatrix[2][0] = kehrwert;
+        localStorage["kriterienMatrix"] = JSON.stringify(kriterienMatrix);
+         $(caller).siblings().removeClass("selected");
+        $(caller).addClass("selected")
+    }
+}
+else {
+    document.getElementById("loadData").innerHTML ="Ihr Webbrowser unterstützt kein Web Storage!";
+}
+
+
+
+
+
+
+</script>
+         
+
+        
+
+
+          
+           
+   <!-- End Footer -->
+     
+       <script type="text/javascript">     
+            $("select").imagepicker();
+         </script>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Storage.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>
