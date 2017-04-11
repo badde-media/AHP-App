@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="css/foundation-apps.css">
         <link rel="stylesheet" href="css/survey.css">
+        <link href="js/jquery-ui.css" rel="stylesheet">
     </head>
     <body onLoad="berechne();">
 
@@ -33,9 +34,11 @@
             var kriterienAnzahl = localStorage.getItem("kriterienAnzahl");
             var loesungenAnzahl = localStorage.getItem("loesungenAnzahl");
             var kriterienArray = JSON.parse(localStorage["kriterienArray"]);
+            var loesungenArray = JSON.parse(localStorage["loesungenArray"]);
             
             // lade Kriterienergebnis
             var arr = JSON.parse(localStorage["arr"]);
+            var arrGeordnet = JSON.parse(localStorage["arrGeordnet"]);
 //                var skriterium1 = localStorage.getItem("skriterium1");
 //                var skriterium2 = localStorage.getItem("skriterium2");
 //                var skriterium3 = localStorage.getItem("skriterium3");
@@ -119,10 +122,10 @@
 
             // Berechnung Gesamtwertung = Kriterienwichtung * Lösungswichtung (zeilenweise)
             var gesamtWertung = new Array();
-            for (gesY=0; gesY<kriterienAnzahl*loesungenAnzahl; gesY++) {
-//                loesungsMatrizenProzente[gesY] = new Array();
-                for (gesX=0; gesX<loesungenAnzahl-1; gesX++) {
-                    gesamtWertung.push(Math.round(arr[gesY][1] * loesungsMatrizenProzente[gesY][gesX])/100);
+            for (gesY=0; gesY<arr.length; gesY++) {
+                gesamtWertung[gesY] = new Array();
+                for (gesX=0; gesX<loesungenAnzahl; gesX++) {
+                    gesamtWertung[gesY].push(Math.round(arr[gesY][1] * loesungsMatrizenProzente[gesY][gesX])/100);
                 }
             }            
             localStorage["gesamtWertung"] = JSON.stringify(gesamtWertung);
@@ -136,20 +139,44 @@
 //            gwlk3_2 = Math.round(zeilenResultk3 * zeilenResultlk3_2) / 100;
 //            gwlk3_3 = Math.round(zeilenResultk3 * zeilenResultlk3_3) / 100;
             // Berechnung Gesamtwertung = Addition der jeweils 1., 2. und 3. Werte
+            var addierteWerte = new Array();
+            var zaehler = 0;
+            for (loesungZaehler=0; loesungZaehler<loesungenAnzahl;loesungZaehler++){
+                var sloesung = loesungenArray[loesungZaehler];
+                var loesung = 0;
+                addierteWerte[loesungZaehler] = new Array();
+                for (kriterienZaehler=0; kriterienZaehler<kriterienAnzahl; kriterienZaehler++) {
+//                    addierteWerte[kriterienZaehler][loesungZaehler] = 0;
+                    loesung += Math.round(parseFloat(gesamtWertung[kriterienZaehler][loesungZaehler]*10000)/100);
+                    addierteWerte[loesungZaehler] = [sloesung, loesung/100]
+                    zaehler++;
+                }
+            };
+            localStorage["addierteWerte"] = JSON.stringify(addierteWerte);
+            
+            var addierteWerteGeordnet = addierteWerte.slice();
+                    
+            addierteWerteGeordnet = addierteWerteGeordnet.sort(function (a, b) {
+                return b[1] - a[1];
+            });
+            localStorage["addierteWerteGeordnet"] = JSON.stringify(addierteWerteGeordnet);
 //            gwlk1 = gwlk1_1 + gwlk2_1 + gwlk3_1;
 //            gwlk2 = gwlk1_2 + gwlk2_2 + gwlk3_2;
 //            gwlk3 = gwlk1_3 + gwlk2_3 + gwlk3_3;
 
             // Ausgabe Gesamtwichtung
-            var arrGesamt =
-                    [
-//                        [sloesung1, gwlk1],
-//                        [sloesung2, gwlk2],
-//                        [sloesung3, gwlk3]
-                    ];
-            arrGesamt = arrGesamt.sort(function (a, b) {
-                return b[1] - a[1];
-            });
+            var newdiv = document.createElement('div');
+            newdiv.innerHTML = '<h1>Gesamtwichtung</h1><h3>Lösungen nach Kriterienwichtung bewertet</h3>';
+            document.getElementById("wrap").appendChild(newdiv);
+            for (lAnzahl=0; lAnzahl<loesungenAnzahl; lAnzahl++){
+                var newdiv = document.createElement('div');
+                newdiv.innerHTML = ' <h3> ' + addierteWerteGeordnet[lAnzahl][0] + '</h3><div id="progressbar" role="progressbar" aria-valuemin="0" class="ui-progressbar ui-corner-all ui-widget ui-widget-content" aria-valuemax="100" aria-valuenow="' + addierteWerteGeordnet[lAnzahl][1] + '"><div class="ui-progressbar-value ui-corner-left ui-widget-header" style="width: ' + addierteWerteGeordnet[lAnzahl][1] + '%;">' + addierteWerteGeordnet[lAnzahl][1] + '%</div>' + addierteWerteGeordnet[lAnzahl][1] + '%</div><br />';
+                document.getElementById("wrap").appendChild(newdiv);
+            }
+            var br = document.createElement('br');
+            document.getElementById("wrap").appendChild(br);
+            document.getElementById("wrap").appendChild(br);
+            
             //        alert(arr);
 //            var g1 = document.getElementById("g1");
 //            g1.innerHTML = '<h1>Gesamtwichtung</h1>';
@@ -160,18 +187,53 @@
 //            var g1min = document.getElementById("g1min");
 //            g1min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrG[2][0] + ',<br /> Wichtung: ' + arrG[2][1] + '%</h3>';
 
+            var kriterienLoesungen = new Array();
+            for (kritZaehler=0; kritZaehler<kriterienAnzahl; kritZaehler++) {
+                kriterienLoesungen[kritZaehler] = new Array();
+                for (loesungZaehler=0; loesungZaehler<loesungenAnzahl; loesungZaehler++) {
+                    kriterienLoesungen[kritZaehler][loesungZaehler] = new Array();
+                    kriterienLoesungen[kritZaehler][loesungZaehler].push(kriterienArray[kritZaehler],loesungenArray[loesungZaehler],loesungsMatrizenProzente[kritZaehler][loesungZaehler]);
+                }
+            }
+            localStorage["kriterienLoesungen"] = JSON.stringify(kriterienLoesungen);
+            
+            var kriterienLoesungenSortiert = kriterienLoesungen.slice();
+            
+            for (sort=0; sort<kriterienAnzahl; sort++) {
+                kriterienLoesungenSortiert[sort] = kriterienLoesungenSortiert[sort].sort(function (a, b) {
+                    return b[2] - a[2];
+                });
+            };
+            localStorage["kriterienLoesungenSortiert"] = JSON.stringify(kriterienLoesungenSortiert);
+            
+            
+            // Ausgabe Kriterium
+            for(kZaehler=0; kZaehler<kriterienAnzahl; kZaehler++) {
+                for (arrayZaehler0 = 0; arrayZaehler0 < kriterienAnzahl; arrayZaehler0++) {
+                    var inhalt = "";
+                    var newdiv = document.createElement('div');
+                    for (arrayZaehler1 = 0; arrayZaehler1 < loesungenAnzahl; arrayZaehler1++) {
+                        if(kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][0].indexOf(arrGeordnet[kZaehler][0]) == 0) {
+                            newdiv.innerHTML = ' <h3> ' + arrGeordnet[kZaehler][0] + '</h3>';
+                            inhalt += kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][1] + '<div id="progressbar" role="progressbar" aria-valuemin="0" class="ui-progressbar ui-corner-all ui-widget ui-widget-content" aria-valuemax="100" aria-valuenow="' + kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][2] + '"><div class="ui-progressbar-value ui-corner-left ui-widget-header" style="width: ' + kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][2] + '%;">' + kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][2] + '%</div>' + kriterienLoesungenSortiert[arrayZaehler0][arrayZaehler1][2] + '%</div><br />';
+                            newdiv.innerHTML = '<h3>' + arrGeordnet[kZaehler][0] + ' (' + arrGeordnet[kZaehler][1] + '%)</h3>' + inhalt;
+                        }
+                    }
 
-
-            // Ausgabe Kriterium 1
-            var arrK1 =
-                    [
-//                        [sloesung1, zeilenResultlk1_1],
-//                        [sloesung2, zeilenResultlk1_2],
-//                        [sloesung3, zeilenResultlk1_3]
-                    ];
-            arrK1 = arrK1.sort(function (a, b) {
-                return b[1] - a[1];
-            });
+                    document.getElementById("wrap").appendChild(newdiv);
+                }
+                var br = document.createElement('br');
+                document.getElementById("wrap").appendChild(br);
+                document.getElementById("wrap").appendChild(br);
+            }
+        
+             
+//            var arrK1 =
+//                    [
+////                        [sloesung1, zeilenResultlk1_1],
+////                        [sloesung2, zeilenResultlk1_2],
+////                        [sloesung3, zeilenResultlk1_3]
+//                    ];
             //        alert(arr);
 //            var k1 = document.getElementById("k1");
 //            k1.innerHTML = '<h1>' + skriterium1 + ' (' + zeilenResultk1 + '%)</h1>';
@@ -183,15 +245,15 @@
 //            k1min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK1[2][0] + ',<br /> Wichtung: ' + arrK1[2][1] + '%</h3>';
 
             // Ausgabe Kriterium 2
-            var arrK2 =
-                    [
-//                        [sloesung1, zeilenResultlk2_1],
-//                        [sloesung2, zeilenResultlk2_2],
-//                        [sloesung3, zeilenResultlk2_3]
-                    ];
-            arrK2 = arrK2.sort(function (a, b) {
-                return b[1] - a[1];
-            });
+//            var arrK2 =
+//                    [
+////                        [sloesung1, zeilenResultlk2_1],
+////                        [sloesung2, zeilenResultlk2_2],
+////                        [sloesung3, zeilenResultlk2_3]
+//                    ];
+//            arrK2 = arrK2.sort(function (a, b) {
+//                return b[1] - a[1];
+//            });
             //        alert(arr);
 //            var k2 = document.getElementById("k2");
 //            k2.innerHTML = '<h1>' + skriterium2 + ' (' + zeilenResultk2 + '%)</h1>';
@@ -202,16 +264,16 @@
 //            var k2min = document.getElementById("k2min");
 //            k2min.innerHTML = '<svg width="140" height="140"><circle cx="60" cy="60" r="50" stroke="" stroke-width="4" fill="#006cb0" /></svg> <h3>L&ouml;sung: ' + arrK2[2][0] + ',<br /> Wichtung: ' + arrK2[2][1] + '%</h3>';
 
-            // Ausgabe Kriterium 3
-            var arrK3 =
-                    [
-//                        [sloesung1, zeilenResultlk3_1],
-//                        [sloesung2, zeilenResultlk3_2],
-//                        [sloesung3, zeilenResultlk3_3]
-                    ];
-            arrK3 = arrK3.sort(function (a, b) {
-                return b[1] - a[1];
-            });
+//            // Ausgabe Kriterium 3
+//            var arrK3 =
+//                    [
+////                        [sloesung1, zeilenResultlk3_1],
+////                        [sloesung2, zeilenResultlk3_2],
+////                        [sloesung3, zeilenResultlk3_3]
+//                    ];
+//            arrK3 = arrK3.sort(function (a, b) {
+//                return b[1] - a[1];
+//            });
             //        alert(arr);
 //            var k3 = document.getElementById("k3");
 //            k3.innerHTML = '<h1>' + skriterium3 + ' (' + zeilenResultk3 + '%)</h1>';
